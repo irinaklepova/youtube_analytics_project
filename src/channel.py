@@ -11,7 +11,7 @@ class Channel:
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.channel_id = channel_id
-        # в 15 строке я вообще не поняла, что произошлo, метод науного "пальцем в глаз")
+        # в 15 строке я вообще не поняла, что произошлo, метод научного "пальцем в глаз")
         self.info = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         self.title = self.info['items'][0]['snippet']['title']
         self.description = self.info['items'][0]['snippet']['description']
