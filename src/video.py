@@ -3,6 +3,7 @@ from googleapiclient.discovery import build
 
 
 class Video:
+    """Класс инициализируется по 'id видео'"""
     def __init__(self, video_id):
         self.video_id = video_id
         self.dict_info = self.get_video_info(video_id)
@@ -27,6 +28,7 @@ class Video:
 
 
 class PLVideo(Video):
+    """Класс инициализируется по 'id видео' и 'id плейлиста'"""
     def __init__(self, video_id, playlist_id):
         super().__init__(video_id)
         self.playlist_id = playlist_id
