@@ -6,14 +6,22 @@ class Video:
     """Класс инициализируется по 'id видео'"""
     def __init__(self, video_id):
         self.video_id = video_id
-        self.dict_info = self.get_video_info(video_id)
-        self.video_title = self.dict_info['items'][0]['snippet']['title']
-        self.video_url = 'https://www.youtube.com/watch?v=' + self.video_id
-        self.view_count = self.dict_info['items'][0]['statistics']['viewCount']
-        self.like_count = self.dict_info['items'][0]['statistics']['likeCount']
+
+        try:
+            self.dict_info = self.get_video_info(video_id)
+            self.title = self.dict_info['items'][0]['snippet']['title']
+            self.video_url = 'https://www.youtube.com/watch?v=' + self.video_id
+            self.view_count = self.dict_info['items'][0]['statistics']['viewCount']
+            self.like_count = self.dict_info['items'][0]['statistics']['likeCount']
+        except IndexError:
+            self.dict_info = None
+            self.title = None
+            self.video_url = None
+            self.view_count = None
+            self.like_count = None
 
     def __str__(self):
-        return f"{self.video_title}"
+        return f"{self.title}"
 
     @classmethod
     def get_service(cls):
